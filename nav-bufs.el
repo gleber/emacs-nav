@@ -32,10 +32,10 @@
     (define-key keymap "o" (lambda nil (interactive) (other-window 1)))
     (define-key keymap "r" 'nav-bufs-show-buffers)
     (define-key keymap "q" 'nav-quit)
+    (define-key keymap "u" 'nav-bufs-quit)
     (define-key keymap "w" 'nav-shrink-wrap)
     (define-key keymap "W" 'nav-set-width-to-default)
-    (define-key keymap "?" 'nav-help-screen)
-    (define-key keymap "`" 'nav-bufs-quit)
+    (define-key keymap "?" 'nav-help-screen)  ;; FIXME: Bufs mode needs its own help screen.
     (define-key keymap [S-down-mouse-3] 'nav-bufs-quit)
     (define-key keymap [(tab)] 'forward-button)
     (define-key keymap [(shift tab)] 'backward-button)
