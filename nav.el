@@ -333,8 +333,7 @@ If DIRNAME is not a directory or is not accessible, returns nil."
   (interactive "FFilename:")
   (if (file-directory-p filename)
       (nav-push-dir filename)
-    (if (file-exists-p filename)
-        (find-file-other-window filename))))
+    (find-file-other-window filename)))
 
 
 (defun nav-open-file-under-cursor ()
@@ -624,7 +623,7 @@ If there is no second other window, Nav will create one."
   (interactive)
   (nav-set-window-width nav-width)
   (nav-show-dir ".")
-  (goto-line 2))
+  (nav-restore-cursor-line))
 
 
 (defun nav-equalize-window-widths ()
@@ -703,11 +702,13 @@ Synonymous with the (nav) function."
   (interactive)
   (nav-push-dir "~"))
 
+
 (defun nav-jump-to-name (arg)
  (interactive "K")
  (goto-line 2)
  (setq nav-search-string (concat "^" arg))
  (search-forward-regexp nav-search-string))
+
 
 (defun nav-quickfile-jump (quickfile-num)
   "Jumps to directory from custom bookmark list."
@@ -763,6 +764,7 @@ Synonymous with the (nav) function."
 (defun nav-tags-expand ()
   "Shows all function tags in file."
   (interactive)
+  (nav-save-cursor-line)
   (nav-tags-fetch-imenu (nav-get-cur-line-str)))
 
 

@@ -220,6 +220,7 @@ If there is no second other window, Nav will create one."
 (defun nav-bufs ()
   "Run nav-buf-mode on top of nav."
   (interactive)
+  (nav-save-cursor-line)
   (select-window (nav-get-window nav-buffer-name))
   (nav-bufs-mode))
 
