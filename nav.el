@@ -333,8 +333,7 @@ If DIRNAME is not a directory or is not accessible, returns nil."
   (interactive "FFilename:")
   (if (file-directory-p filename)
       (nav-push-dir filename)
-    (if (file-exists-p filename)
-        (find-file-other-window filename))))
+    (find-file-other-window filename)))
 
 
 (defun nav-open-file-under-cursor ()
@@ -624,7 +623,7 @@ If there is no second other window, Nav will create one."
   (interactive)
   (nav-set-window-width nav-width)
   (nav-show-dir ".")
-  (goto-line 2))
+  (nav-restore-cursor-line))
 
 
 (defun nav-equalize-window-widths ()
@@ -721,6 +720,7 @@ http://muffinresearch.co.uk/archives/2007/01/30/bash-single-quotes-inside-of-sin
   (search-forward-regexp nav-search-string))
 
 
+
 (defun nav-quickfile-jump (quickfile-num)
   "Jumps to directory from custom bookmark list."
   (interactive)
@@ -775,6 +775,7 @@ http://muffinresearch.co.uk/archives/2007/01/30/bash-single-quotes-inside-of-sin
 (defun nav-tags-expand ()
   "Shows all function tags in file."
   (interactive)
+  (nav-save-cursor-line)
   (nav-tags-fetch-imenu (nav-get-cur-line-str)))
 
 
