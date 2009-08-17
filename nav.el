@@ -400,10 +400,9 @@ updates the nav-width global variable as a side effect."
 
 (defun nav-push-dir (dirname)
   (let ((dirname (file-truename dirname)))
-    (when (not (and nav-dir-stack
-		    (string= dirname (car nav-dir-stack))))
-	(push (file-truename default-directory) nav-dir-stack)
-	(nav-cd dirname))))
+    (when (not (string= dirname default-directory))
+      (push (file-truename default-directory) nav-dir-stack)
+      (nav-cd dirname))))
 
 
 (defun nav-pop-dir ()
